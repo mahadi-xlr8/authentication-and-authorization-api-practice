@@ -4,7 +4,6 @@ const bcrypt = require("bcrypt");
 const router = express.Router();
 const { user } = require("../server");
 const { validatePassword, validateUser } = require("../validation");
-const genToken = require("../genToken");
 
 router.post("/", async (req, res) => {
   const validation = validateUser(
@@ -23,7 +22,7 @@ router.post("/", async (req, res) => {
       const hashed = await bcrypt.hash(newUser.password, salt);
       newUser.password = hashed;
       await newUser.save();
-      const token = genToken({ id: newUser._id });
+      const token = newUser.genAuthToken();
 
       res
         .header("x-token", token)
