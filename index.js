@@ -1,5 +1,6 @@
 const user = require("./routes/user");
 const auth = require("./routes/auth");
+const movie = require("./routes/movie");
 
 const express = require("express");
 const app = express();
@@ -12,6 +13,7 @@ if (!config.get("jwtPrivatekey")) {
 app.use(express.json());
 app.use("/api/register", user);
 app.use("/api/login", auth);
+app.use("/api/movie", movie);
 
 app.get("/", (req, res) => {
   res.send("hello world");

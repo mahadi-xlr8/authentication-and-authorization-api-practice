@@ -29,4 +29,22 @@ userSchema.methods.genAuthToken = function () {
 
 const users = mongoose.model("users", userSchema);
 
+const movies = mongoose.model(
+  "movies",
+  new mongoose.Schema({
+    name: {
+      type: String,
+      minlenght: 1,
+      maxlenght: 255,
+      required: true,
+    },
+    user: {
+      type: mongoose.Types.ObjectId,
+      required: true,
+      ref: "users",
+    },
+  })
+);
+
+module.exports.movies = movies;
 module.exports.user = users;
