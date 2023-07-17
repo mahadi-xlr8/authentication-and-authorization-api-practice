@@ -3,6 +3,11 @@ const auth = require("./routes/auth");
 
 const express = require("express");
 const app = express();
+const config = require("config");
+if (!config.get("jwtPrivatekey")) {
+  console.error("FATAL ERROR: jwt private key is not set!");
+  process.exit(1);
+}
 
 app.use(express.json());
 app.use("/api/register", user);
