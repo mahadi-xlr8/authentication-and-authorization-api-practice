@@ -16,7 +16,7 @@ app.use("/api/login", auth);
 app.use("/api/movie", movie);
 
 app.get("/", (req, res) => {
-  res.send("hello world");
+  res.send("it is working!");
 });
 
 app.listen(3000, () => console.log("listening on port 3000..."));
